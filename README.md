@@ -49,7 +49,7 @@ npm install -D prisma sqlite3
     longitud
     tipoPropiedad
     estadoPropiedad
-    direccion
+    direccion  
     ciudad
     estado
     pais
