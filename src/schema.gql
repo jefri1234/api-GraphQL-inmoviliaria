@@ -2,11 +2,44 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type Imagen {
   id: Int!
-  name: String!
-  email: String!
+  url: String!
+  propiedadId: Int!
+  propiedad: Propiedad!
+}
+
+type Propiedad {
+  id: Int!
+  descripcion: String!
+  precio: Float!
+  area: Float
+  habitaciones: Int
+  banos: Int
+  garage: Int
+  longitud: Float
+  tipoPropiedad: TipoPropiedad!
+  estadoPropiedad: EstadoPropiedad!
+  direccion: String
+  ciudad: String
+  estado: String
+  pais: String
+  userId: Int!
+  user: User!
+  imagenes: [Imagen]
+  imgenPrincipla: String!
   createdAt: DateTime!
+}
+
+enum TipoPropiedad {
+  CASA
+  TERRENO
+  DEPARTAMENTO
+}
+
+enum EstadoPropiedad {
+  VENTA
+  ALQUILER
 }
 
 """
@@ -14,24 +47,87 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type User {
+  id: Int!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  image: String
+  telefono: String
+  fecha: DateTime
+  rol: String
+  propiedades: [Propiedad!]!
+  fechaNacimiento: DateTime
+}
+
 type Query {
-  users: [User!]!
   user(id: Int!): User!
+  users: [User!]!
+  propiedades: [Propiedad!]!
+  propiedad(id: Int!): Propiedad!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createPropiedad(createPropiedadInput: CreatePropiedadInput!): Propiedad!
+  updatePropiedad(updatePropiedadInput: UpdatePropiedadInput!): Propiedad!
+  removePropiedad(id: Int!): Propiedad!
 }
 
 input CreateUserInput {
   name: String!
-  email: String!
+  image: String!
+  telefono: String!
+  fecha: DateTime!
+  rol: String!
+  fechaNaciemiento: DateTime!
 }
 
 input UpdateUserInput {
   name: String
-  email: String
+  image: String
+  telefono: String
+  fecha: DateTime
+  rol: String
+  fechaNaciemiento: DateTime
+  id: Int!
+}
+
+input CreatePropiedadInput {
+  descripcion: String!
+  precio: Float!
+  area: Float
+  habitaciones: Int
+  banos: Int
+  garage: Int
+  longitud: Float
+  tipoPropiedad: TipoPropiedad!
+  estadoPropiedad: EstadoPropiedad!
+  direccion: String
+  ciudad: String
+  estado: String
+  pais: String
+  userId: Int!
+  imgenPrincipla: String!
+}
+
+input UpdatePropiedadInput {
+  descripcion: String
+  precio: Float
+  area: Float
+  habitaciones: Int
+  banos: Int
+  garage: Int
+  longitud: Float
+  tipoPropiedad: TipoPropiedad
+  estadoPropiedad: EstadoPropiedad
+  direccion: String
+  ciudad: String
+  estado: String
+  pais: String
+  userId: Int
+  imgenPrincipla: String
   id: Int!
 }

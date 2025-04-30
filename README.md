@@ -33,3 +33,33 @@ npm install -D prisma sqlite3
     email
   }
   }
+
+
+ # QUERY FOR PRPOPIEDAD
+
+  query {
+  propiedades {
+    id
+    descripcion
+    precio
+    area
+    habitaciones
+    banos
+    garage
+    longitud
+    tipoPropiedad
+    estadoPropiedad
+    direccion
+    ciudad
+    estado
+    pais
+    imgenPrincipla
+    createdAt
+
+    imagenes {
+      id
+      url
+    }
+  }
+}
+ 

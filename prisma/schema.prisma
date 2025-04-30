@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  
 }
 
 datasource db {
@@ -12,9 +11,88 @@ datasource db {
 }
 
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  createdAt DateTime @default(now())
+enum TipoPropiedad {
+  CASA
+  TERRENO
+  DEPARTAMENTO
 }
+enum EstadoPropiedad {
+  VENTA
+  ALQUILER
+}
+
+// enum TipoMensaje {
+//   INQUIETUD
+//   OFERTA
+//   CONSULTA
+// }
+
+model User {
+  id              Int         @id @default(autoincrement())
+  name            String
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt @default(now())
+  image           String?
+  telefono        String?
+  fecha           DateTime?
+  rol             String?
+  propiedades     Propiedad[]
+  //favoritos       Favorito[]
+  //mensajes        Mensaje[]
+  fechaNacimiento DateTime?
+}
+
+
+
+model Propiedad {
+  id           Int        @id @default(autoincrement())
+  descripcion  String
+  precio       Float
+  area         Float?
+  habitaciones Int?
+  banos        Int?
+  garage       Int?
+  longitud     Float?
+  tipoPropiedad TipoPropiedad
+  estadoPropiedad EstadoPropiedad 
+
+  direccion    String?
+  ciudad       String?
+  estado       String?
+  pais         String?
+
+  userId       Int
+  user         User       @relation(fields: [userId], references: [id])
+  //mensajes     Mensaje[]
+  //favoritos    Favorito[]
+  imagenes     Imagen[]
+  imgenPrincipla String
+  createdAt    DateTime   @default(now())
+}
+
+model Imagen {
+  id          Int       @id @default(autoincrement())
+  url         String
+  propiedadId Int
+  propiedad   Propiedad @relation(fields: [propiedadId], references: [id])
+}
+
+// model Favorito {
+//   id          Int       @id @default(autoincrement())
+//   userId      Int
+//   propiedadId Int
+//   user        User      @relation(fields: [userId], references: [id])
+//   propiedad   Propiedad @relation(fields: [propiedadId], references: [id])
+//   createdAt   DateTime  @default(now())
+//   updatedAt   DateTime  @updatedAt
+// }
+
+// model Mensaje {
+//   id          Int       @id @default(autoincrement())
+//   contenido   String
+//   userId      Int
+//   propiedadId Int
+//   user        User      @relation(fields: [userId], references: [id])
+//   propiedad   Propiedad @relation(fields: [propiedadId], references: [id])
+//   createdAt   DateTime  @default(now())
+// }
