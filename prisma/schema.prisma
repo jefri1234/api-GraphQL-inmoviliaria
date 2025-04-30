@@ -19,6 +19,8 @@ enum TipoPropiedad {
 enum EstadoPropiedad {
   VENTA
   ALQUILER
+  DISPONIBLE
+  RESERVADO 
 }
 
 // enum TipoMensaje {
@@ -57,16 +59,16 @@ model Propiedad {
   estadoPropiedad EstadoPropiedad 
 
   direccion    String?
-  ciudad       String?
-  estado       String?
   pais         String?
+  provincia     String?
+  distrito     String?
 
   userId       Int
   user         User       @relation(fields: [userId], references: [id])
   //mensajes     Mensaje[]
   //favoritos    Favorito[]
   imagenes     Imagen[]
-  imgenPrincipla String
+  imgenPrincipla String @default("placeholder.jpg")
   createdAt    DateTime   @default(now())
 }
 

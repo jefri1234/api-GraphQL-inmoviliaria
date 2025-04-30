@@ -62,4 +62,3 @@ npm install -D prisma sqlite3
     }
   }
 }
- 

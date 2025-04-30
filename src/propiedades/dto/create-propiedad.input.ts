@@ -35,13 +35,13 @@ export class CreatePropiedadInput {
   direccion?: string;
 
   @Field({ nullable: true })
-  ciudad?: string;
-
-  @Field({ nullable: true })
-  estado?: string;
-
-  @Field({ nullable: true })
   pais?: string;
+
+  @Field({ nullable: true })
+  provincia?: string;
+
+  @Field({ nullable: true })
+  distrito?: string;
 
   @Field(() => Int)
   userId: number;

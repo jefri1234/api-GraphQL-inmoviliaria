@@ -9,6 +9,7 @@ import { PropiedadModule } from './propiedades/propiedades.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ImagenModule } from './imagen/imagen.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ImagenModule } from './imagen/imagen.module';
     UsersModule,
     PropiedadModule,
     ImagenModule,
+    PaymentsModule,
 
   ],
   controllers:[AppController],

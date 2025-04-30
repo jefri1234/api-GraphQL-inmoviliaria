@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+
 import { CreatePropiedadInput } from './dto/create-propiedad.input';
 import { UpdatePropiedadInput } from './dto/update-propiedad.input';
 

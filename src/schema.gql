@@ -21,9 +21,9 @@ type Propiedad {
   tipoPropiedad: TipoPropiedad!
   estadoPropiedad: EstadoPropiedad!
   direccion: String
-  ciudad: String
-  estado: String
   pais: String
+  provincia: String
+  distrito: String
   userId: Int!
   user: User!
   imagenes: [Imagen]
@@ -40,6 +40,8 @@ enum TipoPropiedad {
 enum EstadoPropiedad {
   VENTA
   ALQUILER
+  DISPONIBLE
+  RESERVADO
 }
 
 """
@@ -60,11 +62,19 @@ type User {
   fechaNacimiento: DateTime
 }
 
+type Payment {
+  id: Int!
+  amount: Float!
+  description: String!
+}
+
 type Query {
   user(id: Int!): User!
   users: [User!]!
   propiedades: [Propiedad!]!
   propiedad(id: Int!): Propiedad!
+  payments: [Payment!]!
+  payment(id: Int!): Payment!
 }
 
 type Mutation {
@@ -74,6 +84,9 @@ type Mutation {
   createPropiedad(createPropiedadInput: CreatePropiedadInput!): Propiedad!
   updatePropiedad(updatePropiedadInput: UpdatePropiedadInput!): Propiedad!
   removePropiedad(id: Int!): Propiedad!
+  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
+  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
+  removePayment(id: Int!): Payment!
 }
 
 input CreateUserInput {
@@ -106,9 +119,9 @@ input CreatePropiedadInput {
   tipoPropiedad: TipoPropiedad!
   estadoPropiedad: EstadoPropiedad!
   direccion: String
-  ciudad: String
-  estado: String
   pais: String
+  provincia: String
+  distrito: String
   userId: Int!
   imgenPrincipla: String!
 }
@@ -124,10 +137,21 @@ input UpdatePropiedadInput {
   tipoPropiedad: TipoPropiedad
   estadoPropiedad: EstadoPropiedad
   direccion: String
-  ciudad: String
-  estado: String
   pais: String
+  provincia: String
+  distrito: String
   userId: Int
   imgenPrincipla: String
+  id: Int!
+}
+
+input CreatePaymentInput {
+  amount: Float!
+  description: String!
+}
+
+input UpdatePaymentInput {
+  amount: Float
+  description: String
   id: Int!
 }
