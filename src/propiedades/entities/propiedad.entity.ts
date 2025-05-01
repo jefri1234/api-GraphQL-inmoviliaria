@@ -43,6 +43,9 @@ export class Propiedad {
   pais?: string;
 
   @Field({ nullable: true })
+  departamento?: string;
+
+  @Field({ nullable: true })
   provincia?: string;
 
   @Field({ nullable: true })

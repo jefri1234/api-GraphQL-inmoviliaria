@@ -60,6 +60,7 @@ model Propiedad {
 
   direccion    String?
   pais         String?
+  departamento String? 
   provincia     String?
   distrito     String?
 

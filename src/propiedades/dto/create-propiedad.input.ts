@@ -36,6 +36,9 @@ export class CreatePropiedadInput {
 
   @Field({ nullable: true })
   pais?: string;
+  
+  @Field({ nullable: true })
+  departamento?: string;
 
   @Field({ nullable: true })
   provincia?: string;
