@@ -4,6 +4,7 @@ import { Imagen } from 'src/imagen/entities/imagen.entity';
 import { TipoPropiedad } from '../enums/tipo-propiedad.enum';
 import { EstadoPropiedad } from '../enums/estado-propiedad.enum';
 
+
 @ObjectType()
 export class Propiedad {
   @Field(() => Int)

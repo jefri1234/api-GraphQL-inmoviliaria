@@ -16,7 +16,7 @@ npm install -D prisma sqlite3
 # RUN SERVER
   npm run start:dev
 
-# TEST QUERIS AND MUTATIONS
+# TEST QUERIS AND MUTATIONS -----USER------
 
   mutation {
   createUser(createUserInput: { name: "Juan", email: "juan@mail.com" }) {
@@ -62,3 +62,36 @@ npm install -D prisma sqlite3
     }
   }
 }
+
+
+# MUTACION FOR CREATE PROPIEDAD
+
+mutation {
+  createPropiedad(createPropiedadInput: {
+    descripcion: "Casa moderna en el centro",
+    precio: 150000,
+    area: 120,
+    habitaciones: 3,
+    banos: 2,
+    garage: 1,
+    longitud: -77.042793,
+    tipoPropiedad: CASA,
+    estadoPropiedad: DISPONIBLE,
+    direccion: "Av. Principal 123",
+    pais: "Perú",
+    departamento: "Lima",
+    provincia: "Lima",
+    distrito: "Miraflores",
+    userId: 2,
+    imgenPrincipla:"http://imagenes/casitas.png"
+  }) {
+    id
+    descripcion
+    precio
+    habitaciones
+    imagenes {
+      url
+    }
+  }
+}
+

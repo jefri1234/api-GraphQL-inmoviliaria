@@ -4,6 +4,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Propiedad } from './../../propiedades/entities/propiedad.entity';
 
 @ObjectType()
+
 export class Imagen {
   @Field(() => Int)
   id: number;

@@ -1,12 +1,15 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { PropiedadService } from './propiedades.service';
 
 import { Propiedad } from './entities/propiedad.entity';
 import { CreatePropiedadInput } from './dto/create-propiedad.input';
 import { UpdatePropiedadInput } from './dto/update-propiedad.input';
 
+import { Imagen } from '../imagen/entities/imagen.entity';
+
 @Resolver(() => Propiedad)
 export class PropiedadResolver {
+
   constructor(private readonly propiedadService: PropiedadService) {}
 
   @Mutation(() => Propiedad)
@@ -33,4 +36,12 @@ export class PropiedadResolver {
   removePropiedad(@Args('id', { type: () => Int }) id: number) {
     return this.propiedadService.remove(id);
   }
+
+    // 👇 Resolver para las imágenes asociadas
+    @ResolveField(() => [Imagen])
+    async imagenes(@Parent() propiedad: Propiedad) {
+      return this.propiedadService.findImagenes(propiedad.id);
+    }
+
+    
 }

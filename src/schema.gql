@@ -74,6 +74,8 @@ type Query {
   users: [User!]!
   propiedades: [Propiedad!]!
   propiedad(id: Int!): Propiedad!
+  imagenes: [Imagen!]!
+  imagen(id: Int!): Imagen!
   payments: [Payment!]!
   payment(id: Int!): Payment!
 }
@@ -85,6 +87,9 @@ type Mutation {
   createPropiedad(createPropiedadInput: CreatePropiedadInput!): Propiedad!
   updatePropiedad(updatePropiedadInput: UpdatePropiedadInput!): Propiedad!
   removePropiedad(id: Int!): Propiedad!
+  createImagen(createImagenInput: CreateImagenInput!): Imagen!
+  updateImagen(updateImagenInput: UpdateImagenInput!): Imagen!
+  removeImagen(id: Int!): Imagen!
   createPayment(createPaymentInput: CreatePaymentInput!): Payment!
   updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
   removePayment(id: Int!): Payment!
@@ -145,6 +150,17 @@ input UpdatePropiedadInput {
   distrito: String
   userId: Int
   imgenPrincipla: String
+  id: Int!
+}
+
+input CreateImagenInput {
+  url: String!
+  propiedadId: Int!
+}
+
+input UpdateImagenInput {
+  url: String
+  propiedadId: Int
   id: Int!
 }
 

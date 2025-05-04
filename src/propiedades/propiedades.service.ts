@@ -18,7 +18,7 @@ export class PropiedadService {
         },   
       },
       include: {
-        user: true, // 👈 esto es clave para que el campo "user" se resuelva
+        user: true, // 👈 esto es clave para que el campo "user" se resuelva - incluir user en la respuesta
       },
     });
   }
@@ -41,4 +41,13 @@ export class PropiedadService {
   remove(id: number) {
     return this.prisma.propiedad.delete({ where: { id } });
   }
+
+  async findImagenes(propiedadId: number) {
+    return this.prisma.imagen.findMany({
+      where: {
+        propiedadId,
+      },
+    });
+  }
+
 }
